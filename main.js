@@ -20,6 +20,10 @@ const animation = [
   "hideProjection2",
   "rotateX",
   "rotateY",
+  "rotateZ",
+  "rotateNY",
+  "rotateNX",
+  "translateN",
 ];
 let currentAnimationStep = 0;
 const maxAnimationStep = animation.length;
@@ -92,6 +96,7 @@ const lineMaterial = new THREE.LineBasicMaterial({
 });
 let linePoints = [new THREE.Vector3(4, 4, 0), new THREE.Vector3(9, 16, 5)];
 const lineGeometry = new THREE.BufferGeometry().setFromPoints(linePoints);
+const line = new THREE.Line(lineGeometry, lineMaterial);
 
 const lineCopy1Material = new THREE.LineBasicMaterial({
   color: 0x000000,
@@ -103,6 +108,7 @@ let lineCopy1Points = [new THREE.Vector3(0, 0, 0), new THREE.Vector3(5, 12, 5)];
 const lineCopy1Geometry = new THREE.BufferGeometry().setFromPoints(
   lineCopy1Points
 );
+const lineCopy1 = new THREE.Line(lineCopy1Geometry, lineCopy1Material);
 
 const lineCopy2Material = new THREE.LineBasicMaterial({
   color: 0x000000,
@@ -114,6 +120,7 @@ let lineCopy2Points = [new THREE.Vector3(0, 0, 0), new THREE.Vector3(5, 0, 13)];
 const lineCopy2Geometry = new THREE.BufferGeometry().setFromPoints(
   lineCopy2Points
 );
+const lineCopy2 = new THREE.Line(lineCopy2Geometry, lineCopy2Material);
 
 const lineCopy3Material = new THREE.LineBasicMaterial({
   color: 0x000000,
@@ -128,7 +135,34 @@ let lineCopy3Points = [
 const lineCopy3Geometry = new THREE.BufferGeometry().setFromPoints(
   lineCopy3Points
 );
+const lineCopy3 = new THREE.Line(lineCopy3Geometry, lineCopy3Material);
 
+const lineCopy5Material = new THREE.LineBasicMaterial({
+  color: 0x000000,
+  linewidth: 2,
+  transparent: true,
+  opacity: 0,
+});
+let lineCopy5Points = [new THREE.Vector3(0, 0, 0), new THREE.Vector3(5, 0, 13)];
+const lineCopy5Geometry = new THREE.BufferGeometry().setFromPoints(
+  lineCopy5Points
+);
+const lineCopy5 = new THREE.Line(lineCopy5Geometry, lineCopy5Material);
+
+const lineCopy6Material = new THREE.LineBasicMaterial({
+  color: 0x000000,
+  linewidth: 2,
+  transparent: true,
+  opacity: 0,
+});
+let lineCopy6Points = [new THREE.Vector3(0, 0, 0), new THREE.Vector3(5, 12, 5)];
+const lineCopy6Geometry = new THREE.BufferGeometry().setFromPoints(
+  lineCopy6Points
+);
+const lineCopy6 = new THREE.Line(lineCopy6Geometry, lineCopy6Material);
+
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 const pointMaterial = new THREE.PointsMaterial({
   color: 0x000000,
   size: 0.9,
@@ -138,6 +172,7 @@ const pointMaterial = new THREE.PointsMaterial({
 const pointGeometry = new THREE.BufferGeometry().setFromPoints([
   new THREE.Vector3(5, 8, 10),
 ]);
+const point = new THREE.Points(pointGeometry, pointMaterial);
 
 const pointCopy1Material = new THREE.PointsMaterial({
   color: 0x000000,
@@ -148,6 +183,7 @@ const pointCopy1Material = new THREE.PointsMaterial({
 const pointCopy1Geometry = new THREE.BufferGeometry().setFromPoints([
   new THREE.Vector3(1, 4, 10),
 ]);
+const pointCopy1 = new THREE.Points(pointCopy1Geometry, pointCopy1Material);
 
 const pointCopy2Material = new THREE.PointsMaterial({
   color: 0x000000,
@@ -158,7 +194,54 @@ const pointCopy2Material = new THREE.PointsMaterial({
 const pointCopy2Geometry = new THREE.BufferGeometry().setFromPoints([
   new THREE.Vector3(1, -7.692, 7.54),
 ]);
+const pointCopy2 = new THREE.Points(pointCopy2Geometry, pointCopy2Material);
 
+const pointCopy3Material = new THREE.PointsMaterial({
+  color: 0x000000,
+  size: 0.9,
+  transparent: true,
+  opacity: 0,
+});
+const pointCopy3Geometry = new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(-1.9, -7.692, 7.364),
+]);
+const pointCopy3 = new THREE.Points(pointCopy3Geometry, pointCopy3Material);
+
+const pointCopy4Material = new THREE.PointsMaterial({
+  color: 0x000000,
+  size: 0.9,
+  transparent: true,
+  opacity: 0,
+});
+const pointCopy4Geometry = new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(1.9, 7.692, 7.364),
+]);
+const pointCopy4 = new THREE.Points(pointCopy4Geometry, pointCopy4Material);
+
+const pointCopy5Material = new THREE.PointsMaterial({
+  color: 0x000000,
+  size: 0.9,
+  transparent: true,
+  opacity: 0,
+});
+const pointCopy5Geometry = new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(4.524, 7.692, 6.113),
+]);
+const pointCopy5 = new THREE.Points(pointCopy5Geometry, pointCopy5Material);
+
+const pointCopy6Material = new THREE.PointsMaterial({
+  color: 0x000000,
+  size: 0.9,
+  transparent: true,
+  opacity: 0,
+});
+const pointCopy6Geometry = new THREE.BufferGeometry().setFromPoints([
+  new THREE.Vector3(4.524, 8.6, -4.75),
+]);
+const pointCopy6 = new THREE.Points(pointCopy6Geometry, pointCopy6Material);
+
+/////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 const axisLetterMaterial = new THREE.LineBasicMaterial({
   color: 0x000000,
   linewidth: 2,
@@ -172,6 +255,8 @@ let xPoints = [
   new THREE.Vector3(24, -1, 0),
 ];
 const xGeometry = new THREE.BufferGeometry().setFromPoints(xPoints);
+const x = new THREE.Line(xGeometry, axisLetterMaterial);
+
 let yPoints = [
   new THREE.Vector3(-1, 24, 0),
   new THREE.Vector3(0, 23, 0),
@@ -179,6 +264,8 @@ let yPoints = [
   new THREE.Vector3(-1, 22, 0),
 ];
 const yGeometry = new THREE.BufferGeometry().setFromPoints(yPoints);
+const y = new THREE.Line(yGeometry, axisLetterMaterial);
+
 let zPoints = [
   new THREE.Vector3(-1, 1, 22),
   new THREE.Vector3(0, 1, 22),
@@ -186,7 +273,10 @@ let zPoints = [
   new THREE.Vector3(0, 0, 22),
 ];
 const zGeometry = new THREE.BufferGeometry().setFromPoints(zPoints);
+const z = new THREE.Line(zGeometry, axisLetterMaterial);
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 const projectionLineMaterial = new THREE.LineDashedMaterial({
   color: 0x000000,
   dashSize: 1,
@@ -206,6 +296,7 @@ const projectionLine = new THREE.Line(
   projectionLineGeometry,
   projectionLineMaterial
 );
+projectionLine.computeLineDistances();
 
 const projectionLine2Material = new THREE.LineDashedMaterial({
   color: 0x000000,
@@ -225,7 +316,10 @@ const projectionLine2 = new THREE.Line(
   projectionLine2Geometry,
   projectionLine2Material
 );
+projectionLine2.computeLineDistances();
 
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 const yzPlaneMaterial = new THREE.MeshBasicMaterial({
   color: 0x000000,
   wireframe: false,
@@ -233,21 +327,7 @@ const yzPlaneMaterial = new THREE.MeshBasicMaterial({
   opacity: 0,
 });
 const yzPlaneGeometry = new THREE.BoxGeometry(0, 20, 20);
-
-const line = new THREE.Line(lineGeometry, lineMaterial);
-const lineCopy1 = new THREE.Line(lineCopy1Geometry, lineCopy1Material);
-const lineCopy2 = new THREE.Line(lineCopy2Geometry, lineCopy2Material);
-const x = new THREE.Line(xGeometry, axisLetterMaterial);
-const y = new THREE.Line(yGeometry, axisLetterMaterial);
-const z = new THREE.Line(zGeometry, axisLetterMaterial);
-
 const yzPlane = new THREE.Mesh(yzPlaneGeometry, yzPlaneMaterial);
-const point = new THREE.Points(pointGeometry, pointMaterial);
-const pointCopy1 = new THREE.Points(pointCopy1Geometry, pointCopy1Material);
-const pointCopy2 = new THREE.Points(pointCopy2Geometry, pointCopy2Material);
-
-projectionLine.computeLineDistances();
-projectionLine2.computeLineDistances();
 yzPlane.translateY(10);
 yzPlane.translateZ(10);
 
@@ -263,12 +343,19 @@ lineGroup.add(
   line,
   lineCopy1,
   lineCopy2,
+  lineCopy3,
+  lineCopy5,
+  lineCopy6,
   projectionLine,
   projectionLine2,
   yzPlane,
   point,
   pointCopy1,
-  pointCopy2
+  pointCopy2,
+  pointCopy3,
+  pointCopy4,
+  pointCopy5,
+  pointCopy6
 );
 
 function animate() {
@@ -304,12 +391,45 @@ const animateForward = (currentAnimationStep) => {
     case "rotateY":
       var tl = gsap.timeline();
       tl.set(lineCopy1.material, { opacity: 0 });
-      tl.set(pointCopy1.material, { opacity: 0 });
-      tl.set(lineCopy2.material, { opacity: 1 });
-      tl.set(pointCopy2.material, { opacity: 1 });
+      tl.set(pointCopy1.material, { opacity: 0 }, "<");
+      tl.set(lineCopy2.material, { opacity: 1 }, ">");
+      tl.set(pointCopy2.material, { opacity: 1 }, "<");
       tl.to(lineCopy2.rotation, { duration: 1, y: -(5 / 13) }, ">");
       tl.to(pointCopy2.rotation, { duration: 1, y: -(5 / 13) }, "<");
       tl.to(projectionLine.material, { duration: 1, opacity: 0 }, "<");
+      tl.set(lineCopy2.material, { opacity: 0 }, ">");
+      tl.set(pointCopy2.material, { opacity: 0 }, "<");
+      tl.set(lineCopy3.material, { opacity: 1 }, ">");
+      tl.set(pointCopy3.material, { opacity: 1 }, "<");
+      break;
+    case "rotateZ":
+      var tl = gsap.timeline();
+      tl.to(pointCopy3.rotation, { duration: 1, z: Math.PI });
+      tl.set(pointCopy3.material, { opacity: 0 }, ">");
+      tl.set(pointCopy4.material, { opacity: 1 }, "<");
+      break;
+    case "rotateNY":
+      var tl = gsap.timeline();
+      tl.to(lineCopy3.rotation, { duration: 1, y: 5 / 13 });
+      tl.to(pointCopy4.rotation, { duration: 1, y: 5 / 13 }, "<");
+      tl.set(lineCopy3.material, { opacity: 0 }, ">");
+      tl.set(pointCopy4.material, { opacity: 0 }, "<");
+      tl.set(lineCopy5.material, { opacity: 1 }, ">");
+      tl.set(pointCopy5.material, { opacity: 1 }, "<");
+      break;
+    case "rotateNX":
+      var tl = gsap.timeline();
+      tl.to(lineCopy5.rotation, { duration: 1, x: -1.176 });
+      tl.to(pointCopy5.rotation, { duration: 1, x: -1.176 }, "<");
+      tl.set(lineCopy5.material, { opacity: 0 }, ">");
+      tl.set(pointCopy5.material, { opacity: 0 }, "<");
+      tl.set(lineCopy6.material, { opacity: 1 }, ">");
+      tl.set(pointCopy6.material, { opacity: 1 }, "<");
+      break;
+    case "translateN":
+      var tl = gsap.timeline();
+      tl.to(lineCopy6.position, { duration: 1, x: 4, y: 4, z: 0 });
+      tl.to(pointCopy6.position, { duration: 1, x: 4, y: 4, z: 0 }, "<");
       break;
   }
 };
@@ -341,6 +461,10 @@ const animateBackward = (currentAnimationStep) => {
       break;
     case "rotateY":
       var tl = gsap.timeline();
+      tl.set(lineCopy3.material, { opacity: 0 });
+      tl.set(pointCopy3.material, { opacity: 0 }, "<");
+      tl.set(lineCopy2.material, { opacity: 1 }, ">");
+      tl.set(pointCopy2.material, { opacity: 1 }, "<");
       tl.to(lineCopy2.rotation, { duration: 1, y: 0 });
       tl.to(pointCopy2.rotation, { duration: 1, y: 0 }, "<");
       tl.to(projectionLine.material, { duration: 1, opacity: 1 }, "<");
@@ -348,6 +472,35 @@ const animateBackward = (currentAnimationStep) => {
       tl.set(pointCopy1.material, { opacity: 1 });
       tl.set(lineCopy2.material, { opacity: 0 });
       tl.set(pointCopy2.material, { opacity: 0 });
+      break;
+    case "rotateZ":
+      var tl = gsap.timeline();
+      tl.set(pointCopy4.material, { opacity: 0 });
+      tl.set(pointCopy3.material, { opacity: 1 });
+      tl.to(pointCopy3.rotation, { duration: 1, z: 0 }, ">");
+      break;
+    case "rotateNY":
+      var tl = gsap.timeline();
+      tl.set(lineCopy3.material, { opacity: 1 });
+      tl.set(pointCopy4.material, { opacity: 1 }, "<");
+      tl.set(lineCopy5.material, { opacity: 0 }, ">");
+      tl.set(pointCopy5.material, { opacity: 0 }, "<");
+      tl.to(lineCopy3.rotation, { duration: 1, y: 0 }, ">");
+      tl.to(pointCopy4.rotation, { duration: 1, y: 0 }, "<");
+      break;
+    case "rotateNX":
+      var tl = gsap.timeline();
+      tl.set(lineCopy5.material, { opacity: 1 });
+      tl.set(pointCopy5.material, { opacity: 1 }, "<");
+      tl.set(lineCopy6.material, { opacity: 0 }, ">");
+      tl.set(pointCopy6.material, { opacity: 0 }, "<");
+      tl.to(lineCopy5.rotation, { duration: 1, x: 0 }, ">");
+      tl.to(pointCopy5.rotation, { duration: 1, x: 0 }, "<");
+      break;
+    case "translateN":
+      var tl = gsap.timeline();
+      tl.to(lineCopy6.position, { duration: 1, x: 0, y: 0, z: 0 });
+      tl.to(pointCopy6.position, { duration: 1, x: 0, y: 0, z: 0 }, "<");
       break;
   }
 };
